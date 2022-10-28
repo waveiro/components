@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li.nested ul {
+  display: none;
+}
+
+li.nested ul.active {
+  display: block;
+}
+
+li.nested > a::before {
+  content: '> ';
+  display: inline-block;
+}
+
+li.nested > a.rotate::before {
+  margin-right: 4px;
+  transform: rotate(90deg);
+}
