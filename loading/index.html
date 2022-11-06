@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" name="search" id="search" />
+    <p class="hidden">loading...</p>
+    <script>
+      let timeoutId;
+
+      window.addEventListener("DOMContentLoaded", () => {
+        init();
+      });
+
+      function init() {
+        const searchTxt = document.querySelector("#search");
+        const loadingP = document.querySelector("p");
+
+        searchTxt.addEventListener("keyup", (event) => {
+          if (timeoutId) {
+            clearTimeout(timeoutId);
+          }
+
+          timeoutId = setTimeout(() => {
+            timeoutId = null;
+            loadingP.classList.remove("hidden");
+            searchTxt.disabled = true;
+            fetch(event.target.value).then(() => {
+              loadingP.classList.add("hidden");
+              searchTxt.disabled = false;
+            });
+          }, 500);
+        });
+      }
+
+      function fetch(params) {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            console.log({ params });
+            resolve();
+          }, 2000);
+        });
+      }
+    </script>
+  </body>
+</html>
