@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.menu {
+  list-style-type: none;
+  width: 200px;
+}
+
+.menu__item {
+  height: 40px;
+  position: relative;
+  border: 1px solid gray;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+}
+
+.menu__item--title {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.menu--submenu {
+  position: absolute;
+  top: 0px;
+  left: 199px;
+  display: none;
+}
+
+.menu__item:hover > .menu--submenu {
+  display: block;
+}
+
+.menu__item:hover > .menu__item--title .caret {
+  transform: rotate(90deg);
+}
